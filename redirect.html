@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="3;url=https://h-ero-game.github.io/cozy-anime-jigsaw-public-api/">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf6f0;
+            color: #5c4033;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        a {
+            color: #d9777f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="status-text">Redirecting to your destination...</h2>
+        <p>If you are not automatically redirected within a few seconds, please click <a id="fallback-link" href="#">this link</a>.</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('to');
+
+        const links = {
+            "bug": "https://h-ero.itch.io/anime-jigsaw",
+            "feature": "https://h-ero.itch.io/anime-jigsaw"
+        };
+
+        let targetUrl = links[destination];
+
+        if (!targetUrl) {
+            window.location.replace("error.html?code=invalid");
+        } else {
+            document.getElementById("fallback-link").href = targetUrl;
+            window.location.replace(targetUrl);
+        }
+    </script>
+
+</body>
+</html>
